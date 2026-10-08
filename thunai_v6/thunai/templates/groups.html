@@ -1,0 +1,7 @@
+{% extends 'base.html' %}{% block c %}<h2>Mentor Groups</h2><div class="card"><table class="rc"><thead><tr><th>Group</th><th>Mentor</th><th>Year</th><th>Sem</th><th>Students</th><th></th></tr></thead>
+{% for g in groups %}<tr><td>{{ g.name }}</td><td>{{ g.mentor.name }}</td><td>{{ g.academic_year }}</td><td>{{ g.semester }}</td><td>{{ size[g.id] }}</td><td><a href="/admin/groups/{{ g.id }}">Edit</a></td></tr>{% endfor %}</table></div>
+<form method="post" class="card"><h3>Create group</h3><input type="hidden" name="_csrf" value="{{ csrf_token() }}"><div class="row">
+<div><label for="n">Group name</label><input id="n" name="name" required></div><div><label for="pr">Programme</label><input id="pr" name="programme" required></div>
+<div><label for="y">Academic year</label><input id="y" name="year" value="2026-27"></div><div><label for="sm">Semester</label><input id="sm" name="semester" value="III"></div>
+<div><label for="mm">Mentor</label><select id="mm" name="mentor">{% for m in mentors %}<option value="{{ m.id }}">{{ m.name }}</option>{% endfor %}</select></div></div>
+<label for="d">Description</label><input id="d" name="description"><button>Create group</button></form>{% endblock %}

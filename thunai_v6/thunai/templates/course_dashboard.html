@@ -1,0 +1,3 @@
+{% extends 'base.html' %}{% block c %}<h2>My Courses &amp; Marks</h2><p class="sub">Upload internal and semester marks for the courses assigned to you.</p>
+{% for r in rows %}<div class="card"><h3><a href="/course/{{ r.c.id }}">{{ r.c.code }} — {{ r.c.name }}</a></h3><p class="sub">{{ r.c.programme }} · Semester {{ r.c.semester }} · {{ r.n }} students</p>
+<table class="rc"><thead><tr><th>Exam</th><th>Marks uploaded</th><th>Average %</th></tr></thead>{% for s in r.stats %}<tr><td>{{ s.exam }}</td><td data-l="Uploaded">{{ s.n }} / {{ r.n }}</td><td data-l="Average">{{ s.avg if s.avg is not none else '—' }}</td></tr>{% endfor %}</table></div>{% else %}<div class="card">No courses are assigned to you yet. Ask the office or HOD.</div>{% endfor %}{% endblock %}

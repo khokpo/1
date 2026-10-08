@@ -1,0 +1,7 @@
+{% extends 'base.html' %}{% from 'badges.html' import badge %}{% block c %}<h2>Welcome, {{ me.name }}</h2><p class="sub">Department of Statistics</p>
+<div class="grid"><div class="card kpi"><b>{{ total }}</b><span>Total Students</span></div><div class="card kpi"><b>{{ mentors }}</b><span>Mentors</span></div><div class="card kpi"><b>{{ groups }}</b><span>Mentor Groups</span></div>
+<div class="card kpi"><b>{{ un|length }}</b><span>Students without mentor</span></div><div class="card kpi"><b>{{ open_req }}</b><span>Open support requests</span></div><div class="card kpi"><b>{{ fu_due }}</b><span>Follow-ups due</span></div></div>
+{% if counts %}<div class="card"><h3>Support status distribution</h3>{% for k,v in counts.items() %}<p>{{ badge(k) }} {{ v }}<span class="bar" style="display:block;max-width:400px"><i style="width:{{ ((v/total*100)|round) if total else 0 }}%"></i></span></p>{% endfor %}
+<small class="sub">Prototype statistical early-support rules — decision support, requires human review.</small></div>{% endif %}
+{% if un %}<div class="card"><h3>Students without a mentor</h3><table class="rc"><thead><tr><th>Reg No</th><th>Name</th><th>Programme</th><th>Semester</th><th></th></tr></thead>
+{% for s in un %}<tr><td data-l="Reg">{{ s.reg_no }}</td><td>{{ s.name }}</td><td>{{ s.programme }}</td><td>{{ s.semester }}</td><td><a class="btn" href="/admin/assign">Assign Mentor</a></td></tr>{% endfor %}</table></div>{% endif %}{% endblock %}

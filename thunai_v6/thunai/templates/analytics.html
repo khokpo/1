@@ -1,0 +1,4 @@
+{% extends 'base.html' %}{% from 'chartbox.html' import chart %}{% block c %}<h2>Department Analytics</h2><p class="sub">{{ n }} students · Prototype statistical early-support rules — decision support only, requires human review. Workload charts are for allocation, not for evaluating faculty.</p>
+<div class="row"><div class="card">{{ chart('c1', C.status) }}</div><div class="card">{{ chart('c2', C.trend) }}</div></div>
+<div class="row"><div class="card">{{ chart('c3', C.ami) }}</div>{% if C.courses %}<div class="card">{{ chart('c4', C.courses) }}</div>{% endif %}</div>
+<div class="row">{% if C.req %}<div class="card">{{ chart('c5', C.req) }}</div>{% endif %}{% if C.iv %}<div class="card">{{ chart('c6', C.iv) }}</div>{% endif %}{% if C.load %}<div class="card">{{ chart('c7', C.load) }}</div>{% endif %}</div>{% endblock %}

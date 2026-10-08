@@ -1,0 +1,4 @@
+{% extends 'base.html' %}{% block c %}<h2>Intervention Outcomes</h2><p class="sub">{{ ivs }} interventions · {{ req }} support requests</p><div class="card">
+{% if r.before is defined %}<table class="rc"><tr><th>Paired n</th><td>{{ r.n }}</td></tr><tr><th>Mean AMI before → after</th><td>{{ r.before }} → {{ r.after }} (Δ {{ r.diff }})</td></tr><tr><th>95% CI of Δ</th><td>{{ r.ci[0] }} to {{ r.ci[1] }}</td></tr>
+<tr><th>Effect size (d<sub>z</sub>)</th><td>{{ r.dz }}</td></tr><tr><th>Paired t-test p</th><td>{{ r.p_t }}</td></tr><tr><th>Wilcoxon signed-rank p</th><td>{{ r.p_w if r.p_w is not none else 'n/a' }}</td></tr></table>{% endif %}
+<p>{{ r.note }}</p></div>{% endblock %}

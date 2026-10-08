@@ -1,0 +1,3 @@
+{% extends 'base.html' %}{% from 'timeline.html' import timeline with context %}{% block c %}<h2>{{ s.name }} — Development profile</h2><p class="sub">{{ s.reg_no }} · {{ s.programme }} · Semester {{ s.semester }} · Profile completeness {{ comp.pct }}% (not a performance measure) · <a href="{{ '/mentor/student/' ~ s.reg_no if mentor_view else '/admin/students/' ~ s.reg_no }}">Back</a> · <a href="{{ '/mentor/student/' ~ s.reg_no ~ '/report' if mentor_view else '/admin/students/' ~ s.reg_no ~ '/report' }}">Report</a></p>
+{% if note %}<div class="card"><h3>Contextual note</h3><p>{{ note }}</p></div>{% endif %}{% include 'dev_snapshot.html' %}
+<div class="card"><h3>Timeline</h3>{{ timeline(sn.tl, DCATS) }}</div>{% endblock %}

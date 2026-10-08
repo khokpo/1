@@ -1,0 +1,3 @@
+{% from 'badges.html' import bandbadge %}<div class="card"><h3>Student Development Snapshot</h3><p class="sub">Verified records only; self-declared items are labelled. Prototype bands — not validated, not a measure of the student's worth.</p>
+<table><thead><tr><th>Dimension</th><th>Verified</th><th>Self-declared (pending)</th><th>Level</th></tr></thead>{% for d in sn.dims %}<tr><td>{{ d.name }}</td><td data-l="Verified">{{ d.verified }}</td><td data-l="Pending">{{ d.pending }}</td><td>{{ bandbadge(d.level) }}</td></tr>{% endfor %}</table>
+<p>Verified achievements: {{ sn.achievements }} · Conferences presented: {{ sn.presented }}, attended: {{ sn.attended }} · Academic Momentum: {{ sig.ami if sig.ami is not none else '—' }} {{ sig.trend }}</p></div>

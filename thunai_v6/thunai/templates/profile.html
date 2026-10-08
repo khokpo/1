@@ -1,0 +1,5 @@
+{% extends 'base.html' %}{% block c %}<h2>My Profile</h2><p class="sub">{{ s.reg_no }} · {{ s.programme }} · Semester {{ s.semester }}</p>
+<form method="post" enctype="multipart/form-data" class="card"><input type="hidden" name="_csrf" value="{{ csrf_token() }}">
+{% if s.photo %}<img src="/photo/{{ s.reg_no }}" alt="Your profile photo" width="120" height="120" style="border-radius:50%;object-fit:cover">{% else %}<p>No photo yet.</p>{% endif %}
+<p><b>Mentor:</b> {{ mentor.name if mentor else 'Not assigned yet' }}{% if grp %} · {{ grp.name }}{% endif %}<br><b>Academic information:</b> {{ s.programme }}, Semester {{ s.semester }} (managed by the office)</p><label for="ph">Profile photo (JPG, PNG or WEBP, up to 2 MB)</label><input id="ph" type="file" name="photo" accept="image/jpeg,image/png,image/webp">
+<label for="b">About me</label><textarea id="b" name="bio" rows="4" maxlength="1000">{{ s.bio or '' }}</textarea><p class="sub">Your name, contact details and academic details are entered by the office. To fix a mistake, use <a href="/student/details">My Details</a>.</p><button>Save profile</button></form>{% endblock %}

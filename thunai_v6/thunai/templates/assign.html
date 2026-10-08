@@ -1,0 +1,9 @@
+{% extends 'base.html' %}{% block c %}<h2>Assign Mentor to Students</h2><p class="sub">Bulk assignment keeps full mentor history.</p>
+<form method="post" class="card"><input type="hidden" name="_csrf" value="{{ csrf_token() }}">
+<div class="row"><div><label for="m">Mentor</label><select id="m" name="mentor">{% for m in mentors %}<option value="{{ m.id }}">{{ m.name }}</option>{% endfor %}</select></div>
+<div><label for="g">Group</label><select id="g" name="group">{% for g in groups %}<option value="{{ g.id }}">{{ g.name }} ({{ g.mentor.name }})</option>{% endfor %}</select></div>
+<div><label for="r">Reason</label><input id="r" name="reason" placeholder="e.g. Faculty workload redistribution"></div></div>
+<label><input type="checkbox" style="width:auto" onclick="document.querySelectorAll('.sel').forEach(c=>c.checked=this.checked)"> Select all</label>
+<table class="rc"><thead><tr><th></th><th>Reg No</th><th>Name</th><th>Current mentor</th><th>History</th></tr></thead>
+{% for s in studs %}<tr><td><input class="sel" style="width:auto" type="checkbox" name="students" value="{{ s.id }}" aria-label="Select {{ s.reg_no }}"></td><td>{{ s.reg_no }}</td><td>{{ s.name }}</td>
+<td>{{ cur[s.id].mentor.name if cur[s.id] else 'Unassigned' }}</td><td><a href="/admin/history/{{ s.reg_no }}">View</a></td></tr>{% endfor %}</table><button>Review assignment</button></form>{% endblock %}

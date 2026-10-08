@@ -1,0 +1,4 @@
+{% extends 'base.html' %}{% block c %}<div class="card"><h2>Confirm assignment</h2>
+<p>{{ sel|length }} students will be assigned to {{ m.name }} under {{ grp.name }}. Any existing assignment is closed, not deleted.</p>
+<form method="post"><input type="hidden" name="_csrf" value="{{ csrf_token() }}"><input type="hidden" name="confirmed" value="1"><input type="hidden" name="mentor" value="{{ m.id }}"><input type="hidden" name="group" value="{{ grp.id }}"><input type="hidden" name="reason" value="{{ request.form.get('reason','') }}">
+{% for s in sel %}<input type="hidden" name="students" value="{{ s.id }}">{% endfor %}<p>{{ sel|map(attribute='reg_no')|join(', ') }}</p><button>Confirm</button> <a class="btn" href="/admin/assign">Cancel</a></form></div>{% endblock %}

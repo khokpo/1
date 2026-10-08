@@ -1,0 +1,1 @@
+{% extends 'base.html' %}{% block c %}<h2>Audit Logs</h2><div class="card"><table class="rc"><thead><tr><th>When (UTC)</th><th>Action</th><th>Detail</th></tr></thead>{% for l in logs %}<tr><td>{{ l.created.strftime('%d-%m-%Y %H:%M') }}</td><td>{{ l.action }}</td><td>{{ l.detail }}</td></tr>{% endfor %}</table></div>{% endblock %}

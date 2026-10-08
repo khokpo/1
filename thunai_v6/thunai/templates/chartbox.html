@@ -1,0 +1,1 @@
+{% macro chart(id, cfg, h=280) %}{% if cfg %}<div style="position:relative;max-width:100%;min-height:{{ h }}px"><canvas id="{{ id }}" role="img" aria-label="{{ cfg.options.plugins.title.text or 'Chart' }}"></canvas></div><script>new Chart(document.getElementById('{{ id }}'),{{ cfg|tojson }});</script>{% endif %}{% endmacro %}

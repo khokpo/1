@@ -1,0 +1,3 @@
+{% extends 'base.html' %}{% block c %}<h2>Mentor Workload</h2><p class="sub">For allocation and administrative visibility only — not an evaluation of faculty performance. Sort: <a href="?sort=n">Students</a> · <a href="?sort=groups">Groups</a> · <a href="?sort=due">Follow-ups</a></p>
+<div class="card"><table class="rc"><thead><tr><th>Mentor</th><th>Groups</th><th>Students</th><th>Priority Support</th><th>Follow-ups due</th></tr></thead>
+{% for r in rows %}<tr><td>{{ r.m.name }}</td><td data-l="Groups">{{ r.groups }}</td><td data-l="Students">{{ r.n }}</td><td data-l="Priority">{{ r.c.get('Priority Support','—') if r.c else '—' }}</td><td data-l="Due">{{ r.due }}</td></tr>{% endfor %}</table></div>{% endblock %}
